@@ -1,9 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 namespace VRKeyboard.Utils
 {
     public class Key : MonoBehaviour
     {
+        
+        [SerializeField] 
+        private TextMeshProUGUI TextBoard;
         protected Text key;
 
         public delegate void OnKeyClickedHandler(string key);
@@ -24,5 +30,13 @@ namespace VRKeyboard.Utils
 
         public virtual void CapsLock(bool isUppercase) { }
         public virtual void ShiftKey() { }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (TextBoard)
+            {
+                TextBoard.text += key.text;
+            }
+        }
     };
 }
