@@ -9,7 +9,7 @@ namespace VRKeyboard.Utils
     {
         
         [SerializeField] 
-        private TextMeshProUGUI TextBoard;
+        private GameObject TextDisplayManager;
         protected Text key;
 
         public delegate void OnKeyClickedHandler(string key);
@@ -33,9 +33,9 @@ namespace VRKeyboard.Utils
 
         private void OnTriggerEnter(Collider other)
         {
-            if (TextBoard)
+            if (TextDisplayManager)
             {
-                TextBoard.text += key.text;
+                TextDisplayManager.GetComponent<TextDisplayManagerBehavior>().UserTyped(key.text);   
             }
         }
     };
